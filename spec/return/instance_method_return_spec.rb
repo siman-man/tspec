@@ -33,10 +33,10 @@ describe TSpec do
       end
 
       context 'multiple type' do
-        it { expect { type.return_string_or_fixnum([]) }.to raise_error(TSpec::ReturnValueTypeError) }
-        it { expect { type.return_string_or_fixnum(:hoge) }.to raise_error(TSpec::ReturnValueTypeError) }
-        it { expect { type.return_string_or_fixnum('string') }.not_to raise_error }
-        it { expect { type.return_string_or_fixnum(1_000_000) }.not_to raise_error }
+        it { expect { type.return_string_or_float([]) }.to raise_error(TSpec::ReturnValueTypeError) }
+        it { expect { type.return_string_or_float(:hoge) }.to raise_error(TSpec::ReturnValueTypeError) }
+        it { expect { type.return_string_or_float('string') }.not_to raise_error }
+        it { expect { type.return_string_or_float(3.14) }.not_to raise_error }
 
         it { expect { type.return_string_float_array([1, 2, 3]) }.to raise_error(TSpec::ReturnValueTypeError) }
         it { expect { type.return_string_float_array([1.0, 2, 3]) }.to raise_error(TSpec::ReturnValueTypeError) }

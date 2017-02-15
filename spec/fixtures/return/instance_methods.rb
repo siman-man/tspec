@@ -16,9 +16,9 @@ module Return
       User.new(val)
     end.return(User)
 
-    def return_string_or_fixnum(val)
+    def return_string_or_float(val)
       val
-    end.return(String, Fixnum)
+    end.return(String, Float)
 
     def return_string_array(val)
       val

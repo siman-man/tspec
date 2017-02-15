@@ -10,7 +10,7 @@ module Receive
     end.receive([String])
 
     def wrong_variable_name(val)
-    end.receive(vl: Fixnum)
+    end.receive(vl: Float)
 
     def single_parameter_float(val)
     end.receive(Float)
