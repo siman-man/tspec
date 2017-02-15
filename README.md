@@ -2,7 +2,7 @@
 
 [![Build Status](https://travis-ci.org/siman-man/tspec.svg?branch=master)](https://travis-ci.org/siman-man/tspec)
 
-TSpec add simple type check of method into Ruby.
+TSpec adds a method of simple type check to Ruby.
 
 :construction: **Recommended for use only in hobby programming. Do not use this in production apps.** :construction:
 
@@ -18,18 +18,18 @@ And then execute:
 
     $ bundle
 
-Or install it yourself as:
+Or install it by yourself:
 
     $ gem install tspec
 
 ## Usage
 
-tspec can use `#receive` and `#return` method.
+TSpec can use `#receive` and `#return` method.
 
 
 ### receive
 
-`receive` define the type of method arguments.
+`receive` defines the type of method arguments.
 
 ```ruby
 require 'tspec'
@@ -39,7 +39,7 @@ def echo(str)
 end.receive(str: String)
 ```
 
-specify multiple type.
+You can specify multiple type, too.
 
 ```ruby
 require 'tspec'
@@ -52,7 +52,7 @@ echo('hello')
 echo(3.14)
 ```
 
-if method arguments is single. it can skip keyword.
+If single method argument is given, you can skip keyword.
 
 ```ruby
 require 'tspec'
@@ -64,7 +64,7 @@ end.receive([String])
 puts join_array(%w(hello world))
 ```
 
-if specify Array content type. writing is strange.
+You can specify Array content type, although it may seem strange.
 
 ```ruby
 require 'tspec'
@@ -79,7 +79,7 @@ puts receive_string_array(['hello', 'world'])
 
 ### return
 
-`return` define the type of method return value.
+`return` defines the type of method return value.
 
 ```ruby
 require 'tspec'
@@ -89,7 +89,7 @@ def message
 end.return(String)
 ```
 
-multiple return value.
+You can specify multiple return value, too.
 
 ```ruby
 require 'tspec'
@@ -103,7 +103,7 @@ end.return(Float, String, Symbol)
 end
 ```
 
-specify Array content type.
+Also, you can specify Array content type.
 
 ```ruby
 require 'tspec'
@@ -117,7 +117,7 @@ p message_list
 
 ## Example
 
-combination `receive` and `return` method.
+Combination of `receive` and `return` method.
 
 ```ruby
 require 'tspec'
@@ -137,5 +137,5 @@ Bug reports and pull requests are welcome on GitHub at https://github.com/siman-
 
 ## License
 
-The gem is available as open source under the terms of the [MIT License](http://opensource.org/licenses/MIT).
+The gem is available under the terms of the [MIT License](http://opensource.org/licenses/MIT).
 
