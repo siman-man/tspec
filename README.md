@@ -62,6 +62,18 @@ end.receive([String])
 puts join_array(%w(hello world))
 ```
 
+if specify Array content type. writing is strange.
+
+```ruby
+require 'tspec'
+
+def receive_string_array(arr)
+  arr.join
+end.receive(arr: [[String]])
+
+puts receive_string_array(['hello', 'world'])
+```
+
 
 ### return
 
@@ -77,7 +89,7 @@ end.return(String)
 
 multiple return value.
 
-```
+```ruby
 require 'tspec'
 
 def random_val
@@ -105,7 +117,7 @@ p message_list
 
 combination `receive` and `return` method.
 
-```
+```ruby
 require 'tspec'
 
 def string2symbol(str)
