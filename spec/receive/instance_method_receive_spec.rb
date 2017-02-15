@@ -44,6 +44,11 @@ describe TSpec do
         it { expect { type.receive_string_keyword(str: 'str') }.not_to raise_error }
       end
 
+      context 'default value' do
+        it { expect { type.receive_string_keyword_default(str: 123) }.to raise_error(TSpec::ArgumentTypeError) }
+        it { expect { type.receive_string_keyword_default }.not_to raise_error }
+      end
+
       context 'multiple keywords' do
         it { expect { type.receive_double_keyword_string_symbol(str: 123, sym: '123') }.to raise_error(TSpec::ArgumentTypeError) }
         it { expect { type.receive_double_keyword_string_symbol(str: '123', sym: '123') }.to raise_error(TSpec::ArgumentTypeError) }

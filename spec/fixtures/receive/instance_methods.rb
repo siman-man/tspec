@@ -18,6 +18,9 @@ module Receive
     def receive_string_keyword(str:)
     end.receive(str: String)
 
+    def receive_string_keyword_default(str: 'string')
+    end.receive(str: String)
+
     def receive_double_keyword_string_symbol(str:, sym:)
     end.receive(str: String, sym: Symbol)
 

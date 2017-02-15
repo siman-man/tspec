@@ -5,8 +5,10 @@ describe TSpec do
       str = 'hello'
 
       def str.receive_string(val)
-        val
       end.receive(val: String)
+
+      def str.receive_string_or_float(val)
+      end.receive(val: [String, Float])
 
       str
     end
