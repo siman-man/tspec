@@ -1,5 +1,7 @@
 # TSpec
 
+[![Build Status](https://travis-ci.org/siman-man/tspec.svg?branch=master)](https://travis-ci.org/siman-man/tspec)
+
 TSpec add simple type check of method into Ruby.
 
 :construction: **Recommended for use only in hobby programming. Do not use this in production apps.** :construction:
