@@ -19,11 +19,32 @@ class Symbol
   end
 end
 
+class UnboundMethod
+  def return(*types)
+    self
+  end
+
+  def receive(*type, **types)
+    self
+  end
+end
+
+class Method
+  def return(*types)
+    self
+  end
+
+  def receive(*type, **types)
+    self
+  end
+end
+
 module TSpec
   @method_return_type_table = {}
   @method_arguments_type_table = {}
   @before_trace = {}
   @type_error_flag = false
+  DEFINE_METHOD_SYMBOLS = %i(method_added singleton_method_added define_method instance_method method)
 
   def self.value_type_check(value, *types)
     types.any? do |type|
@@ -44,10 +65,15 @@ module TSpec
   TracePoint.trace do |tp|
     case tp.event
       when :call
-        if %i(return receive).include?(tp.method_id) && %i(method_added singleton_method_added define_method).include?(@before_trace[:method_id])
-          klass = (@before_trace[:method_id] == :singleton_method_added) ? @before_trace[:self].singleton_class : @before_trace[:self]
+        if %i(return receive).include?(tp.method_id) && DEFINE_METHOD_SYMBOLS.include?(@before_trace[:method_id])
           ctx = tp.binding
-          key = "#{klass}::#{ctx.receiver}"
+
+          if %i(instance_method method).include?(@before_trace[:method_id])
+            key = "#{tp.self.owner}::#{tp.self.name}"
+          else
+            klass = (@before_trace[:method_id] == :singleton_method_added) ? @before_trace[:self].singleton_class : @before_trace[:self]
+            key = "#{klass}::#{ctx.receiver}"
+          end
 
           case tp.method_id
             when :return
@@ -66,17 +92,14 @@ module TSpec
             arguments = tp.binding.eval("method(:#{tp.method_id}).parameters.map(&:last)")
 
             types.each do |name, type|
+              name = arguments.first if name == type.__id__
 
-              if name != type.__id__
-                unless arguments.include?(name)
-                  @type_error_flag = true
-                  raise NotFoundArgumentNameError, "undefined arguments `#{name}' for #{key}"
-                end
-
-                value = tp.binding.local_variable_get(name)
-              else
-                value = tp.binding.local_variable_get(arguments.first)
+              unless arguments.include?(name)
+                @type_error_flag = true
+                raise NotFoundArgumentNameError, "undefined arguments `#{name}' for #{key}"
               end
+
+              value = tp.binding.local_variable_get(name)
 
               unless value_type_check(value, *type)
                 @type_error_flag = true

@@ -36,6 +36,22 @@ module Return
       val
     end.return(Regexp)
 
+    def return_string_unbound(val)
+      val
+    end
+
+    def return_string_or_float_unbound(val)
+      val
+    end
+
+    def return_string_method(val)
+      val
+    end
+
+    def return_string_or_float_method(val)
+      val
+    end
+
     alias_method :return_rxp, :return_regexp
 
     def private_test
@@ -49,6 +65,11 @@ module Return
       '1234'
     end.return(Array)
   end
+
+  Type.instance_method(:return_string_unbound).return(String)
+  Type.instance_method(:return_string_or_float_unbound).return(String, Float)
+  Type.new.method(:return_string_method).return(String)
+  Type.new.method(:return_string_or_float_method).return(String, Float)
 
   Type.class_eval {
     def return_regexp_class_eval(val)

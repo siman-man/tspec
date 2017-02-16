@@ -24,6 +24,12 @@ module Receive
     def receive_double_keyword_string_symbol(str:, sym:)
     end.receive(str: String, sym: Symbol)
 
+    def receive_string_unbound(val)
+    end
+
+    def receive_string_keyword_unbound(str:)
+    end
+
     def single_multi_parameter_float_or_string(val)
     end.receive(Float, String)
 
@@ -35,6 +41,9 @@ module Receive
 
     define_method(:receive_name) { |name| name }.receive(name: String)
   end
+
+  Type.instance_method(:receive_string_unbound).receive(String)
+  Type.instance_method(:receive_string_keyword_unbound).receive(str: String)
 
   class Parent
     def receive_string(val)

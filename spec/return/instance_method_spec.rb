@@ -65,8 +65,26 @@ describe TSpec do
       end
 
       context 'define method' do
-        it { expect { type.return_name(000) }.to raise_error(TSpec::ReturnValueTypeError) }
+        it { expect { type.return_name(123) }.to raise_error(TSpec::ReturnValueTypeError) }
         it { expect { type.return_name('tspec') }.not_to raise_error }
+      end
+
+      context 'unbound method' do
+        it { expect { type.return_string_unbound(123) }.to raise_error(TSpec::ReturnValueTypeError) }
+        it { expect { type.return_string_unbound('123') }.not_to raise_error }
+
+        it { expect { type.return_string_or_float_unbound(123) }.to raise_error(TSpec::ReturnValueTypeError) }
+        it { expect { type.return_string_or_float_unbound('123') }.not_to raise_error }
+        it { expect { type.return_string_or_float_unbound(12.3) }.not_to raise_error }
+      end
+
+      context 'method' do
+        it { expect { type.return_string_method(3.14) }.to raise_error(TSpec::ReturnValueTypeError) }
+        it { expect { type.return_string_method('3.14') }.not_to raise_error }
+
+        it { expect { type.return_string_or_float_method(314) }.to raise_error(TSpec::ReturnValueTypeError) }
+        it { expect { type.return_string_or_float_method(3.14) }.not_to raise_error }
+        it { expect { type.return_string_or_float_method('314') }.not_to raise_error }
       end
     end
 
