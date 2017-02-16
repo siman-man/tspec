@@ -1,5 +1,5 @@
 module Return
-  class CMethod
+  class ClassMethod
     def self.return_string(val)
       val
     end.return(String)
@@ -9,7 +9,7 @@ module Return
     end.return(String, Array)
   end
 
-  CMethod.class_eval {
+  ClassMethod.class_eval {
     def self.return_float(val)
       val
     end.return(Float)
