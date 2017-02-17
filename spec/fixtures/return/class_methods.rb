@@ -28,6 +28,6 @@ module Return
   end
 
   class D
-    include C
+    extend C
   end
 end
