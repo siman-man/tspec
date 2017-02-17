@@ -2,8 +2,6 @@ require 'fixtures/return/class_methods'
 
 describe TSpec do
   describe 'return test of class methods' do
-    let(:d) { Return::D.new }
-
     describe 'default' do
       context 'single type' do
         it { expect { Return::ClassMethod.return_string(3) }.to raise_error(TSpec::ReturnValueTypeError) }
@@ -25,10 +23,10 @@ describe TSpec do
       end
     end
 
-    describe 'exclude module' do
+    describe 'extend module' do
       context 'single type' do
-        it { expect { d.return_string(123) }.to raise_error(TSpec::ReturnValueTypeError) }
-        it { expect { d.return_string('123') }.not_to raise_error }
+        it { expect { Return::D.return_string(123) }.to raise_error(TSpec::ReturnValueTypeError) }
+        it { expect { Return::D.return_string('123') }.not_to raise_error }
       end
     end
   end

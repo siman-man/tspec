@@ -21,5 +21,10 @@ describe TSpec do
       it { expect { Receive::Child.receive_string(123) }.to raise_error(TSpec::ArgumentTypeError) }
       it { expect { Receive::Child.receive_string('123') }.not_to raise_error }
     end
+
+    context 'extend module' do
+      it { expect { Receive::ClassMethod.receive_string_ext(123) }.to raise_error(TSpec::ArgumentTypeError) }
+      it { expect { Receive::ClassMethod.receive_string_ext('123') }.not_to raise_error }
+    end
   end
 end

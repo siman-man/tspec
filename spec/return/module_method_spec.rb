@@ -13,8 +13,14 @@ describe TSpec do
       it { expect { Return::ModuleFunctionTypeA.return_string_or_regexp(/123/) }.not_to raise_error }
     end
 
+    context 'array content' do
+      it { expect { Return::ModuleFunctionTypeA.return_string_array([1,2,3]) }.to raise_error(TSpec::ReturnValueTypeError) }
+      it { expect { Return::ModuleFunctionTypeA.return_string_array(%w(1 2 3)) }.not_to raise_error }
+      it { expect { Return::ModuleFunctionTypeA.return_string_array([]) }.not_to raise_error }
+    end
+
     # TODO: To pass this test.
-    context 'module function type A' do
+    context 'module function type B' do
       xit { expect { Return::ModuleFunctionTypeB.return_symbol('hoge') }.to raise_error(TSpec::ReturnValueTypeError) }
     end
   end

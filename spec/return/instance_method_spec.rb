@@ -86,6 +86,11 @@ describe TSpec do
         it { expect { type.return_string_or_float_method(3.14) }.not_to raise_error }
         it { expect { type.return_string_or_float_method('314') }.not_to raise_error }
       end
+
+      context 'error message' do
+        it { expect { type.return_string(:error) }.to raise_error(TSpec::ReturnValueTypeError, "`return_string' expected return String, but actual `:error' - Symbol") }
+        it { expect { type.return_string_array([1, 2, 3]) }.to raise_error(TSpec::ReturnValueTypeError, "`return_string_array' expected return [String], but actual `[1, 2, 3]' - Array") }
+      end
     end
 
     context 'include module' do

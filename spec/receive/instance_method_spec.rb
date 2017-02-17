@@ -76,6 +76,11 @@ describe TSpec do
         it { expect { type.receive_string_keyword_unbound(str: 123) }.to raise_error(TSpec::ArgumentTypeError) }
         it { expect { type.receive_string_keyword_unbound(str: '123') }.not_to raise_error }
       end
+
+      context 'error message' do
+        it { expect { type.receive_string(:error) }.to raise_error(TSpec::ArgumentTypeError, "#receive_string 'val' variable should be String, but actual ':error' - Symbol") }
+        it { expect { type.single_parameter_float('314') }.to raise_error(TSpec::ArgumentTypeError, "#single_parameter_float 'val' variable should be Float, but actual '\"314\"' - String") }
+      end
     end
 
     context 'method override' do

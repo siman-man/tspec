@@ -7,6 +7,10 @@ module Return
     def self.return_string_or_regexp(val)
       val
     end.return(String, Regexp)
+
+    def self.return_string_array(val)
+      val
+    end.return([String])
   end
 
   module ModuleFunctionTypeB

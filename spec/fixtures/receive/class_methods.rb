@@ -1,5 +1,12 @@
 module Receive
+  module ExtendModule
+    def receive_string_ext(val)
+    end.receive(val: String)
+  end
+
   class ClassMethod
+    extend ExtendModule
+
     def self.receive_string(val)
     end.receive(val: String)
 
