@@ -94,7 +94,11 @@ module TSpec
 
               unless value_type_check(value, *type)
                 @type_error_flag = true
-                raise ArgumentTypeError, "##{tp.method_id} '#{name}' variable should be #{type.inspect}, but actual '#{value.inspect}' - #{value.class}"
+                if type.instance_of?(Array)
+                  raise ArgumentTypeError, "##{tp.method_id} '#{name}' variable should be #{type.map(&:inspect).join(' or ')}, but actual '#{value.inspect}' - #{value.class}"
+                else
+                  raise ArgumentTypeError, "##{tp.method_id} '#{name}' variable should be #{type.inspect}, but actual '#{value.inspect}' - #{value.class}"
+                end
               end
             end
           end
