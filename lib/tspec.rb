@@ -1,13 +1,4 @@
-module TSpec
-  class ReturnValueTypeError < StandardError
-  end
-
-  class NotFoundArgumentNameError < StandardError
-  end
-
-  class ArgumentTypeError < StandardError
-  end
-end
+require 'tspec/type_error'
 
 class Symbol
   def return(*types)
