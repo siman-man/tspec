@@ -7,5 +7,9 @@ module Integration
     def return_string_receive_symbol(val)
       val.to_s
     end.return(String).receive(val: Symbol)
+
+    def receive_float_array_return_string_array(val)
+      val.map(&:to_s)
+    end.receive([Float]).return([String])
   end
 end
