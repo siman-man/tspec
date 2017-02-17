@@ -1,6 +1,6 @@
 describe TSpec do
   describe '.return_type_check' do
-    context 'check successed' do
+    context 'check succeed' do
       it { expect(TSpec.value_type_check(3.14, Float)).to be_truthy }
       it { expect(TSpec.value_type_check('type', String)).to be_truthy }
       it { expect(TSpec.value_type_check(/type/, Regexp)).to be_truthy }
