@@ -37,6 +37,9 @@ require 'tspec'
 def echo(str)
   puts str
 end.receive(str: String)
+
+echo('hello world') #=> ok
+echo(123)           #=> TSpec::ArgumentTypeError
 ```
 
 You can specify multiple type, too.
@@ -48,8 +51,9 @@ def echo(val)
   puts val
 end.receive(val: [String, Float])
 
-echo('hello')
-echo(3.14)
+echo('hello')  #=> ok
+echo(3.14)     #=> ok
+echo(123)      #=> TSpec::ArgumentTypeError
 ```
 
 If single method argument is given, you can skip keyword.
@@ -61,7 +65,8 @@ def join_array(arr)
   arr.join(' ')
 end.receive([String])
 
-puts join_array(%w(hello world))
+puts join_array(%w(hello world)) #=> ok
+puts join_array([1,2,3])         #=> TSpec::ArgumentTypeError
 ```
 
 You can specify Array content type, although it may seem strange.
@@ -73,7 +78,8 @@ def receive_string_array(arr)
   arr.join
 end.receive(arr: [[String]])
 
-puts receive_string_array(['hello', 'world'])
+puts receive_string_array(['hello', 'world']) #=> ok
+puts receive_string_array([:hello, :world])   #=> TSpec::ArgumentTypeError
 ```
 
 
@@ -87,6 +93,13 @@ require 'tspec'
 def message
   'hello world'
 end.return(String)
+
+def dummy_message
+  'hello world'
+end.return(Symbol)
+
+puts message        #=> ok
+puts dummy_message  #=> TSpec::ReturnValueTypeError
 ```
 
 You can specify multiple return value, too.
@@ -126,8 +139,8 @@ def string2symbol(str)
   str.to_sym
 end.receive(str: String).return(Symbol)
 
-p string2symbol('hello') #=> :hello
-p string2symbol(123)     #=> TSpec::ArgumentTypeError
+p string2symbol('hello')  #=> :hello
+p string2symbol(123)      #=> TSpec::ArgumentTypeError
 ```
 
 ## Contributing
@@ -138,4 +151,3 @@ Bug reports and pull requests are welcome on GitHub at https://github.com/siman-
 ## License
 
 The gem is available under the terms of the [MIT License](http://opensource.org/licenses/MIT).
-
