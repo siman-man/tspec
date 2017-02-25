@@ -19,9 +19,14 @@ describe TSpec do
       it { expect { Receive::ModuleFunctionTypeA.receive_string_array([]) }.not_to raise_error }
     end
 
-    # TODO: To pass this test.
-    context 'module function type B' do
-      xit { expect { Receive::ModuleFunctionTypeB.receive_symbol('hoge') }.to raise_error(TSpec::ArgumentTypeError) }
+    context 'module function with method symbol' do
+      it { expect { Receive::ModuleFunctionTypeB.receive_symbol('hoge') }.to raise_error(TSpec::ArgumentTypeError) }
+      it { expect { Receive::ModuleFunctionTypeB.receive_symbol(:hoge) }.not_to raise_error }
+    end
+
+    context 'module function no method symbol' do
+      it { expect { Receive::ModuleFunctionTypeC.receive_string(:hoge) }.to raise_error(TSpec::ArgumentTypeError) }
+      it { expect { Receive::ModuleFunctionTypeC.receive_string('hoge') }.not_to raise_error }
     end
   end
 end
