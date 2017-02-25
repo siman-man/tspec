@@ -1,3 +1,4 @@
+require 'tspec/version'
 require 'tspec/type_error'
 
 class Symbol
