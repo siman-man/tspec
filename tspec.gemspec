@@ -2,9 +2,11 @@
 lib = File.expand_path('../lib', __FILE__)
 $LOAD_PATH.unshift(lib) unless $LOAD_PATH.include?(lib)
 
+require 'tspec/version'
+
 Gem::Specification.new do |spec|
   spec.name          = "tspec"
-  spec.version       = "0.3.0"
+  spec.version       = TSpec::VERSION
   spec.authors       = ["siman-man"]
   spec.email         = ["k128585@ie.u-ryukyu.ac.jp"]
 
