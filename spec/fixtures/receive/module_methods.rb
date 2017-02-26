@@ -16,4 +16,19 @@ module Receive
 
     module_function :receive_symbol
   end
+
+  module ModuleFunctionTypeC
+    module_function
+
+    def receive_string(val)
+    end.receive(String)
+  end
+
+  class ModuleFunctionTest
+    include ModuleFunctionTypeC
+
+    def test_module_function_type_c(val)
+      receive_string(val)
+    end
+  end
 end

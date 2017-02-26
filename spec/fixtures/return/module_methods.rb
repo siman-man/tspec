@@ -20,4 +20,20 @@ module Return
 
     module_function :return_symbol
   end
+
+  module ModuleFunctionTypeC
+    module_function
+
+    def return_string(val)
+      val
+    end.return(String)
+  end
+
+  class ModuleFunctionTest
+    include ModuleFunctionTypeC
+
+    def test_module_function_type_c(val)
+      return_string(val)
+    end
+  end
 end

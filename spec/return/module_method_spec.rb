@@ -19,9 +19,17 @@ describe TSpec do
       it { expect { Return::ModuleFunctionTypeA.return_string_array([]) }.not_to raise_error }
     end
 
-    # TODO: To pass this test.
     context 'module function type B' do
-      xit { expect { Return::ModuleFunctionTypeB.return_symbol('hoge') }.to raise_error(TSpec::ReturnValueTypeError) }
+      it { expect { Return::ModuleFunctionTypeB.return_symbol('hoge') }.to raise_error(TSpec::ReturnValueTypeError) }
+      it { expect { Return::ModuleFunctionTypeB.return_symbol(:hoge) }.not_to raise_error }
+    end
+
+    context 'module function type C' do
+      it { expect { Return::ModuleFunctionTypeC.return_string(123) }.to raise_error(TSpec::ReturnValueTypeError) }
+      it { expect { Return::ModuleFunctionTypeC.return_string('123') }.not_to raise_error }
+
+      it { expect { Return::ModuleFunctionTest.new.test_module_function_type_c(123) }.to raise_error(TSpec::ReturnValueTypeError) }
+      it { expect { Return::ModuleFunctionTest.new.test_module_function_type_c('123') }.not_to raise_error }
     end
   end
 end
