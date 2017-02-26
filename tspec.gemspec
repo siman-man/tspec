@@ -10,8 +10,8 @@ Gem::Specification.new do |spec|
   spec.authors       = ["siman-man"]
   spec.email         = ["k128585@ie.u-ryukyu.ac.jp"]
 
-  spec.summary       = %q{Add type check method}
-  spec.description   = %q{Add type check method}
+  spec.summary       = %q{tspec can check type of methods arguments and return value.}
+  spec.description   = %q{tspec can check type of methods arguments and return value.}
   spec.homepage      = "https://github.com/siman-man/tspec"
   spec.license       = "MIT"
   spec.required_ruby_version = '>= 2.2.0'
