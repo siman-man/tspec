@@ -101,7 +101,7 @@ module TSpec
     key = "#{tp.defined_class}::#{tp.method_id}"
 
     if types = @method_arguments_type_table[key]
-      arguments = tp.binding.eval("method(:#{tp.method_id}).parameters.map(&:last)")
+      arguments = tp.binding.local_variables
 
       types.each do |name, type|
         name = arguments.first if name == type.__id__
