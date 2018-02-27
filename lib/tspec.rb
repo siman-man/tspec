@@ -9,7 +9,7 @@ module TSpec
   @module_function_flags = {}
   @module_function_mode = {}
   @type_error_flag = false
-  HOOK_EVENT = %i(call return c_call c_return line)
+  HOOK_EVENT = %i(call return c_call c_return)
   DEFINE_METHOD_SYMBOLS = %i(method_added singleton_method_added define_method instance_method method)
 
   @trace = TracePoint.new(*HOOK_EVENT) do |tp|
