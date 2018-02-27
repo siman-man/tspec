@@ -89,8 +89,7 @@ describe TSpec do
     end
 
     context 'define method' do
-      # FIXME: This test crash ruby.
-      xit { expect { type.receive_name(123) }.to raise_error(TSpec::ArgumentTypeError) }
+      it { expect { type.receive_name(123) }.to raise_error(TSpec::ArgumentTypeError) }
       it { expect { type.receive_name('tspec') }.not_to raise_error }
     end
 
