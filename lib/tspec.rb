@@ -39,6 +39,7 @@ module TSpec
               if type = @method_return_type_table[key]
                 @method_return_type_table["#{tp.self.singleton_class}:#{name}"] = type
               end
+
               if type = @method_arguments_type_table[key]
                 @method_arguments_type_table["#{tp.self.singleton_class}:#{name}"] = type
               end
@@ -50,7 +51,7 @@ module TSpec
           @module_function_mode[tp.self] = false
         end
       when :return
-        if !@type_error_flag
+        unless @type_error_flag
           key = "#{tp.defined_class}::#{tp.method_id}"
 
           if types = @method_return_type_table[key]
