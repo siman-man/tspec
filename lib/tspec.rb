@@ -21,7 +21,7 @@ module TSpec
           keys = get_keys(tp, @before_trace)
           regist_type(tp.method_id, ctx, keys)
         else
-          check_type(tp)
+          type_check(tp)
         end
       when :c_call
         if tp.method_id == :module_function && tp.defined_class == Module

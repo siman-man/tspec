@@ -97,7 +97,7 @@ module TSpec
     end
   end
 
-  def check_type(tp)
+  def type_check(tp)
     key = "#{tp.defined_class}::#{tp.method_id}"
 
     if types = @method_arguments_type_table[key]
