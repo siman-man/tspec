@@ -51,10 +51,10 @@ module TSpec
     types = ctx.local_variable_get(:types)
 
     case method_id
-      when :return
-        regist_return_type(keys, types)
-      when :receive
-        regist_receive_type(keys, types, ctx.local_variable_get(:type))
+    when :return
+      regist_return_type(keys, types)
+    when :receive
+      regist_receive_type(keys, types, ctx.local_variable_get(:type))
     end
   end
 
